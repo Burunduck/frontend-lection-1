@@ -1,8 +1,11 @@
 const http = require('http');
 const fs = require('fs');
+const debug = require('debug')
+
+const log = debug('server')
 
 const server = http.createServer((req, res) => {
-    console.log('request', req.url);
+    log('request', req.url);
 
     let file = 'index.html';
 
@@ -12,7 +15,7 @@ const server = http.createServer((req, res) => {
 
     fs.readFile(`public/${file}`, (err, data) => {
         if (err) {
-            console.log('error', err);
+            log('error', err);
 
             res.end();
 
